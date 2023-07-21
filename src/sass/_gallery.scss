@@ -1,0 +1,14 @@
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.photo-card {
+    width: calc((100% - 4*20px) / 4);
+    
+}
+
+.photo-card > img {
+    width: 100%;
+}

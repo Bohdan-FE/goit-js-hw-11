@@ -1,0 +1,16 @@
+body {
+  background: rgb(23, 40, 99);
+    background: linear-gradient(90deg, rgba(23, 40, 99, 1) 0%, rgba(2, 0, 36, 1) 42%);
+  color: white;
+}
+.search-form {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(34, 87, 87);
+  padding: 7px;
+  margin-bottom: 8px;
+}
+.input{
+width: 350px;
+}
+
