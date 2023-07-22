@@ -1,15 +1,80 @@
 .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 70px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 80px;
 }
 
 .photo-card {
-    width: calc((100% - 4*20px) / 4);
-    
+  width: calc((100% - 3 * 20px) / 4);
 }
 
-.photo-card > img {
+.img {
+  width: 100%;
+}
+
+.arrow-buttons{
+display: flex;
+flex-direction: column;
+position: fixed;
+right: 35px;
+bottom: 40px;
+}
+
+.button-up,
+.button-down {
+  position: relative;
+  padding: 5px;
+  margin: 16px auto;
+  background: rgba(47, 54, 64, 0.9);
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  transition: all 0.2s linear;
+}
+
+.button-down:hover {
+  transform: translate3d(0, 10px, 0);
+}
+
+.button-up:hover {
+  transform: translate3d(0, -10px, 0);
+}
+
+.button-up::after,
+.button-down::after {
+  content: '';
+  position: absolute;
+  z-index: 11;
+  display: block;
+  width: 25px;
+  height: 25px;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+}
+
+.button-up::after {
+    top: 25%;
+  transform: rotate(45deg);
+  left: 50%;
+  transform-origin: top left;
+}
+
+.button-down::after {
+    transform-origin: 0 0;
+        bottom: -25%;
+        left: 50%;
+        transform: rotate(225deg);
+}
+
+@media screen and (max-width: 780px) {
+  .photo-card {
+    width: calc((100% - 20px) / 2);
+  }
+}
+
+@media screen and (max-width: 391px) {
+  .photo-card {
     width: 100%;
+  }
 }

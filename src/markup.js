@@ -1,6 +1,6 @@
-export function creatGalleryMarkup({webformatURL, downloads, comments, views, likes, tags}) {
+export function creatGalleryMarkup({webformatURL, downloads, comments, views, likes, tags, largeImageURL}) {
     return `<div class="photo-card">
-  <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+  <a class="link" href="${largeImageURL}"><img class="img" src="${webformatURL}" alt="${tags}" loading="lazy" /></a>
   <div class="info">
     <p class="info-item">
       <b>Likes: ${likes}</b>
