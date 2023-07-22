@@ -10,24 +10,38 @@ body {
   color: white;
 }
 
+.form-wraper{
+  display: flex;
+  margin-top: 8px;
+align-items: center;
+}
+
 .search-form {
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translate(-50%, 0%);
   display: flex;
   width: 350px;
   background: rgba(47, 54, 64, 0.9);
   border-radius: 40px;
-  padding: 10px;
+  padding: 2px;
+  margin-left: auto;
+  margin-right: 12px;
+}
+.settings {
+  fill: rgba(255, 255, 255, 0.648);
+margin-right: auto;
+}
+.settings:hover{
+  cursor: pointer;
 }
 
 .btn:hover {
   background: white;
   color: rgba(47, 54, 64, 0.9);
-}
+  fill: black;
+  cursor: pointer;
+} 
 
 .btn {
+  fill: white;
   color: white;
   float: right;
   width: 40px;
@@ -52,6 +66,7 @@ body {
   line-height: 40px;
   width: 100%;
 }
+
 
 @media screen and (max-width: 620px) {
   .search-form {

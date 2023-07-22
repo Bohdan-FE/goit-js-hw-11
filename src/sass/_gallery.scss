@@ -2,15 +2,20 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 80px;
+  margin-top: 18px;
 }
 
 .photo-card {
   width: calc((100% - 3 * 20px) / 4);
+  height: 400px;
+  overflow: hidden;
 }
 
 .img {
+    height: 200px;
   width: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .arrow-buttons{
@@ -35,10 +40,12 @@ bottom: 40px;
 
 .button-down:hover {
   transform: translate3d(0, 10px, 0);
+  cursor: pointer;
 }
 
 .button-up:hover {
   transform: translate3d(0, -10px, 0);
+  cursor: pointer;
 }
 
 .button-up::after,
@@ -67,13 +74,9 @@ bottom: 40px;
         transform: rotate(225deg);
 }
 
-@media screen and (max-width: 780px) {
-  .photo-card {
-    width: calc((100% - 20px) / 2);
-  }
-}
 
-@media screen and (max-width: 391px) {
+
+@media screen and (max-width: 700px) {
   .photo-card {
     width: 100%;
   }
