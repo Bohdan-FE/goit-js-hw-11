@@ -79,6 +79,7 @@ form.addEventListener('submit', onClick);
 
 async function onClick(e) {
   e.preventDefault();
+  paginationList.classList.add('visually-hidden');
   observer.unobserve(target);
   const {
     elements: { searchQuery },
@@ -118,7 +119,14 @@ async function onClick(e) {
             createPaginationMarcap(Math.ceil(totalHits / 40))
           );
           paginationList.children[page].classList.add('current');
-          paginationList.addEventListener('click', async e => {
+        }
+      }
+    } catch (error) {
+      Notify.failure('Ooops, something went wrong!');
+    }
+  }
+}
+ paginationList.addEventListener('click', async e => {
             if (e.target.classList.contains('page__numbers')) {
               paginationList.children[page].classList.remove('current');
               page = Number(e.target.textContent);
@@ -128,6 +136,7 @@ async function onClick(e) {
                 .join('');
               paginationList.children[page].classList.add('current');
               lightbox.refresh();
+              console.log(page)
             } else if (e.target.classList.contains('material-icons-left')) {
               if (page === 1) {
                 return;
@@ -156,14 +165,6 @@ async function onClick(e) {
               }
             }
           });
-        }
-      }
-    } catch (error) {
-      Notify.failure('Ooops, something went wrong!');
-    }
-  }
-}
-
 function observerHandler(entries, observer) {
   entries.forEach(async element => {
     if (element.isIntersecting) {
