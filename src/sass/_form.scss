@@ -79,26 +79,6 @@ body {
 .input::placeholder {
   color: var(--inputPlaceholder);
 }
-@media screen and (max-width: 620px) {
-  .search-form {
-    width: 250px;
-  }
-    .settings-container {
-      width: 350px;
-      margin: 0 auto;
-      background-color: #1f1c1c;
-      padding: 16px 24px 24px;
-      margin-top: 14px;
-      position: absolute;
-      border-radius: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      transition: 0.5s linear;
-      height: 400px;
-      box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-      z-index: 10;
-    }
-}
 
 .settings-container {
   width: 610px;
@@ -171,4 +151,19 @@ body {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   margin: -1px;
+}
+
+@media screen and (max-width: 620px) {
+  .search-form {
+    width: 250px;
+  }
+
+  .settings-container {
+    width: 325px;
+    height: 600px;
+  }
+
+  .settings-container::before {
+    right: 3%;
+  }
 }

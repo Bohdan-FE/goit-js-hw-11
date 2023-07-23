@@ -126,45 +126,45 @@ async function onClick(e) {
     }
   }
 }
- paginationList.addEventListener('click', async e => {
-            if (e.target.classList.contains('page__numbers')) {
-              paginationList.children[page].classList.remove('current');
-              page = Number(e.target.textContent);
-              data = await getPictures(page, search);
-              gallery.innerHTML = data.data.hits
-                .map(object => creatGalleryMarkup(object))
-                .join('');
-              paginationList.children[page].classList.add('current');
-              lightbox.refresh();
-              console.log(page)
-            } else if (e.target.classList.contains('material-icons-left')) {
-              if (page === 1) {
-                return;
-              } else {
-                paginationList.children[page].classList.remove('current');
-                page -= 1;
-                data = await getPictures(page, search);
-                gallery.innerHTML = data.data.hits
-                  .map(object => creatGalleryMarkup(object))
-                  .join('');
-                paginationList.children[page].classList.add('current');
-                lightbox.refresh();
-              }
-            } else if (e.target.classList.contains('material-icons-right')) {
-              if (page === Math.ceil(totalHits / 40)) {
-                return;
-              } else {
-                paginationList.children[page].classList.remove('current');
-                page += 1;
-                data = await getPictures(page, search);
-                gallery.innerHTML = data.data.hits
-                  .map(object => creatGalleryMarkup(object))
-                  .join('');
-                paginationList.children[page].classList.add('current');
-                lightbox.refresh();
-              }
-            }
-          });
+paginationList.addEventListener('click', async e => {
+  if (e.target.classList.contains('page__numbers')) {
+    paginationList.children[page].classList.remove('current');
+    page = Number(e.target.textContent);
+    data = await getPictures(page, search);
+    gallery.innerHTML = data.data.hits
+      .map(object => creatGalleryMarkup(object))
+      .join('');
+    paginationList.children[page].classList.add('current');
+    lightbox.refresh();
+    console.log(page);
+  } else if (e.target.classList.contains('material-icons-left')) {
+    if (page === 1) {
+      return;
+    } else {
+      paginationList.children[page].classList.remove('current');
+      page -= 1;
+      data = await getPictures(page, search);
+      gallery.innerHTML = data.data.hits
+        .map(object => creatGalleryMarkup(object))
+        .join('');
+      paginationList.children[page].classList.add('current');
+      lightbox.refresh();
+    }
+  } else if (e.target.classList.contains('material-icons-right')) {
+    if (page === Math.ceil(totalHits / 40)) {
+      return;
+    } else {
+      paginationList.children[page].classList.remove('current');
+      page += 1;
+      data = await getPictures(page, search);
+      gallery.innerHTML = data.data.hits
+        .map(object => creatGalleryMarkup(object))
+        .join('');
+      paginationList.children[page].classList.add('current');
+      lightbox.refresh();
+    }
+  }
+});
 function observerHandler(entries, observer) {
   entries.forEach(async element => {
     if (element.isIntersecting) {
