@@ -130,7 +130,7 @@ paginationList.addEventListener('click', async e => {
   if (e.target.classList.contains('page__numbers')) {
     paginationList.children[page].classList.remove('current');
     page = Number(e.target.textContent);
-    data = await getPictures(page, search);
+    let data = await getPictures(page, search);
     gallery.innerHTML = data.data.hits
       .map(object => creatGalleryMarkup(object))
       .join('');
@@ -143,7 +143,7 @@ paginationList.addEventListener('click', async e => {
     } else {
       paginationList.children[page].classList.remove('current');
       page -= 1;
-      data = await getPictures(page, search);
+      let data = await getPictures(page, search);
       gallery.innerHTML = data.data.hits
         .map(object => creatGalleryMarkup(object))
         .join('');
@@ -156,7 +156,7 @@ paginationList.addEventListener('click', async e => {
     } else {
       paginationList.children[page].classList.remove('current');
       page += 1;
-      data = await getPictures(page, search);
+      let data = await getPictures(page, search);
       gallery.innerHTML = data.data.hits
         .map(object => creatGalleryMarkup(object))
         .join('');
