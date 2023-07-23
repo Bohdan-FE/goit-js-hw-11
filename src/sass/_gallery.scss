@@ -12,18 +12,18 @@
 }
 
 .img {
-    height: 200px;
+  height: 200px;
   width: 100%;
   display: block;
   object-fit: cover;
 }
 
-.arrow-buttons{
-display: flex;
-flex-direction: column;
-position: fixed;
-right: 35px;
-bottom: 40px;
+.arrow-buttons {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 35px;
+  bottom: 40px;
 }
 
 .button-up,
@@ -61,20 +61,37 @@ bottom: 40px;
 }
 
 .button-up::after {
-    top: 25%;
+  top: 25%;
   transform: rotate(45deg);
   left: 50%;
   transform-origin: top left;
 }
 
 .button-down::after {
-    transform-origin: 0 0;
-        bottom: -25%;
-        left: 50%;
-        transform: rotate(225deg);
+  transform-origin: 0 0;
+  bottom: -25%;
+  left: 50%;
+  transform: rotate(225deg);
 }
 
+ul {
+  margin: 0;
+}
 
+.pagination__list {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination__list li {
+  list-style: none;
+  cursor: pointer;
+}
+.current {
+  font-size: 40px;
+}
 
 @media screen and (max-width: 700px) {
   .photo-card {

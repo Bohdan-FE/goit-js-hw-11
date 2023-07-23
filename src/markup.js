@@ -16,4 +16,13 @@ export function creatGalleryMarkup({webformatURL, downloads, comments, views, li
     </p>
   </div>
 </div>`
+};
+
+export function createPaginationMarcap(totalPages) {
+  let arr = [];
+  for (let i = 1; i <= totalPages; i += 1) {
+    let markup = `<li class="page__numbers">${i}</li>`;
+    arr.push(markup);
+  }
+  return arr.join('')
 }

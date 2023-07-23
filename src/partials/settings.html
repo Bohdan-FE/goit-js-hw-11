@@ -1,31 +1,27 @@
-<!-- <div class="settings-container">
-    <form>
-        <p>Choose a color:</p>
+<div class="settings-container visually-hidden">
+    <form class="setting-form">
+        <p>Theme:</p>
         <label>
-            <input type="radio" name="color" value="red" />
-            Red
+            <input type="radio" name="theme" value="dark" checked />
+            Dark
         </label>
         <label>
-            <input type="radio" name="color" value="white" checked />
-            White
+            <input type="radio" name="theme" value="bright" />
+            Bright
+        </label>
+        <p>Pagination type:</p>
+        <label>
+            <input type="radio" name="pagination" value="infinityScroll" checked />
+            Infinity scroll
         </label>
         <label>
-            <input type="radio" name="color" value="green" />
-            Green
-        </label>
-
-        <p>Select size:</p>
-        <label>
-            <input type="radio" name="size" value="sm" />
-            Small
+            <input type="radio" name="pagination" value="pagination" />
+            Pagination
         </label>
         <label>
-            <input type="radio" name="size" value="md" />
-            Medium
+            <input type="radio" name="pagination" value="loadMore" />
+            Button "Load more"
         </label>
-        <label>
-            <input type="radio" name="size" value="lg" checked />
-            Large
-        </label>
+        <button class="apply-btn" type="submit">Apply</button>
     </form>
-</div> -->
+</div>
