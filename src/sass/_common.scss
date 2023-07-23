@@ -1,1 +1,20 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+body.dark {
+  --textcolor: white;
+  --bgcolor: rgb(30, 2, 30);
+  --fill: rgba(255, 255, 255, 0.648);
+  --searchForm: rgba(47, 54, 64, 0.9);
+  --btnSearch: rgba(47, 54, 64, 0.9);
+  --inputPlaceholder: rgba(170, 181, 197, 0.9);
+  --inputcolor: white;
+}
+
+body.bright {
+  --textcolor: black;
+  --bgcolor: rgb(168, 216, 202);
+  --fill: rgba(8, 4, 4, 0.648);
+  --searchForm: rgba(162, 168, 174, 0.9);
+  --btnSearch: rgba(139, 144, 152, 0.9);
+  --inputPlaceholder: rgb(34, 35, 35);
+  --inputcolor: black;
+}

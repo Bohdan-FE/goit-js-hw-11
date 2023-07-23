@@ -20,6 +20,8 @@ const arrowBtns = document.querySelector('.arrow-buttons');
 const settingsContainer = document.querySelector('.settings-container');
 const settingsBtn = document.querySelector('.settings-btn');
 const settingForm = document.querySelector('.setting-form');
+const left = document.querySelector('.left');
+const paginationList = document.querySelector('.pagination__list');
 
 settingsBtn.addEventListener('click', e => {
   settingsContainer.classList.toggle('visually-hidden');
@@ -41,7 +43,7 @@ let lightbox = new SimpleLightbox('.gallery a', {
 let page = 1;
 let search = '';
 let totalHits = 0;
-let paginationValue = 'pagination';
+let paginationValue = 'infinityScroll';
 let themeValue = 'dark';
 
 settingForm.addEventListener('submit', e => {
@@ -49,9 +51,21 @@ settingForm.addEventListener('submit', e => {
   const {
     elements: { theme, pagination },
   } = e.currentTarget;
+  btnDown.hidden = true;
+  observer.unobserve(target);
+  gallery.innerHTML = '';
+  paginationList.classList.add('visually-hidden');
   themeValue = theme.value;
   paginationValue = pagination.value;
-  console.log(paginationValue);
+  settingsContainer.classList.toggle('visually-hidden');
+  themeValue = theme.value;
+  if (themeValue === 'dark') {
+    document.body.classList.remove('bright');
+    document.body.classList.add('dark');
+  } else {
+    document.body.classList.remove('dark');
+    document.body.classList.add('bright');
+  }
 });
 
 async function getPictures(page, value) {
@@ -62,30 +76,6 @@ async function getPictures(page, value) {
 }
 
 form.addEventListener('submit', onClick);
-async function getPictures() {
-  if (search) {
-    try {
-      let data = await getPictures(page, search);
-      if (data.data.total === 0 || data.data.hits.length === 0) {
-        Notify.failure(
-          'Sorry, there are no images matching your search query. Please try again.'
-        );
-        btnDown.hidden = true;
-      } else {
-        gallery.insertAdjacentHTML(
-          'beforeend',
-          data.data.hits.map(object => creatGalleryMarkup(object)).join('')
-        );
-        Notify.success(`Hooray! We found ${data.data.totalHits} images.`);
-        totalHits = data.data.totalHits;
-        lightbox.refresh();
-        btnDown.hidden = false;
-      }
-    } catch (error) {
-      Notify.failure('Ooops, something went wrong!');
-    }
-  }
-};
 
 async function onClick(e) {
   e.preventDefault();
@@ -119,22 +109,54 @@ async function onClick(e) {
         if (paginationValue === 'infinityScroll') {
           observer.observe(target);
         } else if (paginationValue === 'pagination') {
-          const left = document.querySelector('.left');
-          const paginationList = document.querySelector('.pagination__list');
-          left.insertAdjacentHTML('afterend', '');
+          paginationList.classList.remove('visually-hidden');
+          document
+            .querySelectorAll('.page__numbers')
+            .forEach(element => element.remove());
           left.insertAdjacentHTML(
             'afterend',
             createPaginationMarcap(Math.ceil(totalHits / 40))
           );
-          console.dir(paginationList);
           paginationList.children[page].classList.add('current');
-          paginationList.addEventListener('click', e => {
-            if (e.target.contains('page__numbers')) {
+          paginationList.addEventListener('click', async e => {
+            if (e.target.classList.contains('page__numbers')) {
+              paginationList.children[page].classList.remove('current');
               page = Number(e.target.textContent);
+              data = await getPictures(page, search);
+              gallery.innerHTML = data.data.hits
+                .map(object => creatGalleryMarkup(object))
+                .join('');
+              paginationList.children[page].classList.add('current');
+              lightbox.refresh();
+            } else if (e.target.classList.contains('material-icons-left')) {
+              if (page === 1) {
+                return;
+              } else {
+                paginationList.children[page].classList.remove('current');
+                page -= 1;
+                data = await getPictures(page, search);
+                gallery.innerHTML = data.data.hits
+                  .map(object => creatGalleryMarkup(object))
+                  .join('');
+                paginationList.children[page].classList.add('current');
+                lightbox.refresh();
+              }
+            } else if (e.target.classList.contains('material-icons-right')) {
+              if (page === Math.ceil(totalHits / 40)) {
+                return;
+              } else {
+                paginationList.children[page].classList.remove('current');
+                page += 1;
+                data = await getPictures(page, search);
+                gallery.innerHTML = data.data.hits
+                  .map(object => creatGalleryMarkup(object))
+                  .join('');
+                paginationList.children[page].classList.add('current');
+                lightbox.refresh();
+              }
             }
           });
         }
-        // else if (pagination = 'loadMore')
       }
     } catch (error) {
       Notify.failure('Ooops, something went wrong!');
@@ -163,13 +185,16 @@ function observerHandler(entries, observer) {
     }
   });
 }
-
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+}
 arrowBtns.addEventListener('click', e => {
   if (e.target === btnUp) {
-    window.scrollBy({
-      top: gallery.getBoundingClientRect().top - 100,
-      behavior: 'smooth',
-    });
+    scrollToTop();
   } else if (e.target === btnDown) {
     window.scrollBy({
       top: window.innerHeight,

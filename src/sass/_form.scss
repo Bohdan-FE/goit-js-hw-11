@@ -6,8 +6,8 @@
 }
 
 body {
-  background: rgb(30, 2, 30);
-  color: white;
+  background-color: var(--bgcolor);
+  color: var(--textcolor);
 }
 
 .form-wraper {
@@ -19,7 +19,7 @@ body {
 .search-form {
   display: flex;
   width: 350px;
-  background: rgba(47, 54, 64, 0.9);
+  background: var(--searchForm);
   border-radius: 40px;
   padding: 2px;
   margin-left: auto;
@@ -27,7 +27,7 @@ body {
 }
 
 .settings-btn {
-  fill: rgba(255, 255, 255, 0.648);
+  fill: var(--fill);
   margin-right: auto;
   transition: 1s;
   display: flex;
@@ -57,7 +57,7 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(47, 54, 64, 0.9);
+  background: var(--btnSearch);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,13 +70,15 @@ body {
   outline: none;
   float: left;
   padding: 0 6px;
-  color: white;
+  color: var(--inputcolor);
   font-size: 16px;
   transition: 0.4s;
   line-height: 40px;
   width: 100%;
 }
-
+.input::placeholder {
+  color: var(--inputPlaceholder);
+}
 @media screen and (max-width: 620px) {
   .search-form {
     width: 250px;
@@ -95,6 +97,8 @@ body {
   transform: translateX(-50%);
   transition: 0.5s linear;
   height: 400px;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  z-index: 10;
 }
 
 .settings-container::before {
@@ -112,9 +116,33 @@ body {
 
 .setting-form {
   overflow: hidden;
-  font-size: 14px;
+  font-size: 22px;
   max-width: 100%;
   height: 100%;
+  color: white;
+}
+.setting-form label {
+  display: inline-block;
+  width: 140px;
+  font-size: 20px;
+}
+
+.setting-form > label {
+  margin-bottom: 50px;
+  margin-right: 40px;
+}
+.apply-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+  outline: none;
+  padding: 6px 14px;
+  border-radius: 12px;
+  background-color: #322f2f;
+  color: azure;
 }
 
 .visually-hidden {
@@ -128,5 +156,4 @@ body {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   margin: -1px;
-  transition: 1s;
 }

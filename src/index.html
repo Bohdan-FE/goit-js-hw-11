@@ -9,14 +9,18 @@
   <script defer type="module" src="./index.js"></script>
 </head>
 
-<body>
+<body class="dark">
   <include src="./partials/form.html"></include>
   <include src="./partials/settings.html"></include>
   <div class="gallery"></div>
   <div class="js-guard"></div>
-  <ul class="pagination__list">
-    <li class="page__btn left"><span class="material-icons">chevron_left</span></li>
-    <li class="page__btn right"><span class="material-icons">chevron_right</span></li>
+  <ul class="pagination__list visually-hidden">
+    <li class="page__btn left">
+      <span class="material-icons-left">&lt;</span>
+    </li>
+    <li class="page__btn right">
+      <span class="material-icons-right">&gt;</span>
+    </li>
   </ul>
   <div class="arrow-buttons">
     <div class="button-up" hidden></div>

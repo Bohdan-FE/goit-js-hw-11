@@ -7,10 +7,14 @@
 
 .photo-card {
   width: calc((100% - 3 * 20px) / 4);
-  height: 400px;
+  height: 100%;
   overflow: hidden;
+  border: 2px solid;
+  transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
-
+.photo-card:hover {
+  transform: scale(1.05);
+}
 .img {
   height: 200px;
   width: 100%;
@@ -83,16 +87,34 @@ ul {
   gap: 5px;
   align-items: center;
   justify-content: center;
+  margin: 25px auto;
 }
 
 .pagination__list li {
   list-style: none;
   cursor: pointer;
+  font-size: 26px;
+  margin: 0 10px 0;
+  transition: 0.2s linear;
+}
+.pagination__list li:hover {
+  transform: scale(1.5);
 }
 .current {
-  font-size: 40px;
+  font-weight: 800;
+  text-decoration: underline;
 }
-
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: start;
+}
+.info b {
+  display: block;
+  font-size: 16px;
+  margin-right: 16px;
+}
 @media screen and (max-width: 700px) {
   .photo-card {
     width: 100%;

@@ -1,5 +1,13 @@
-export function creatGalleryMarkup({webformatURL, downloads, comments, views, likes, tags, largeImageURL}) {
-    return `<div class="photo-card">
+export function creatGalleryMarkup({
+  webformatURL,
+  downloads,
+  comments,
+  views,
+  likes,
+  tags,
+  largeImageURL,
+}) {
+  return `<div class="photo-card">
   <a class="link" href="${largeImageURL}"><img class="img" src="${webformatURL}" alt="${tags}" loading="lazy" /></a>
   <div class="info">
     <p class="info-item">
@@ -15,8 +23,8 @@ export function creatGalleryMarkup({webformatURL, downloads, comments, views, li
       <b>Downloads: ${downloads}</b>
     </p>
   </div>
-</div>`
-};
+</div>`;
+}
 
 export function createPaginationMarcap(totalPages) {
   let arr = [];
@@ -24,5 +32,5 @@ export function createPaginationMarcap(totalPages) {
     let markup = `<li class="page__numbers">${i}</li>`;
     arr.push(markup);
   }
-  return arr.join('')
+  return arr.join('');
 }
