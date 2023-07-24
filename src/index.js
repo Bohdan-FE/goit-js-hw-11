@@ -197,10 +197,12 @@ arrowBtns.addEventListener('click', e => {
   if (e.target === btnUp) {
     scrollToTop();
   } else if (e.target === btnDown) {
+    const { height: cardHeight } = gallery.firstElementChild.getBoundingClientRect();
     window.scrollBy({
-      top: window.innerHeight,
+      top: cardHeight * 2 + 40,
       behavior: 'smooth',
     });
+    console.log(cardHeight)
   }
 });
 
